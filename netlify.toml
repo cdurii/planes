@@ -1,0 +1,20 @@
+[build]
+  publish = "dist"
+  command = "bundle exec jekyll build --config jekyll.yml"
+  environment = { JEKYLL_ENV = "development", BUNDLE_WITHOUT = "development", NODE_OPTIONS = "--max_old_space_size=8192" }
+
+[context.production.environment]
+  JEKYLL_ENV = "production"
+
+[context.deploy-preview.environment]
+  JEKYLL_ENV = "preview"
+
+[dev]
+  autoLaunch = false
+  framework = "#static"
+
+[[redirects]]
+from = "/vite-dev/*"
+to = "http://localhost:3036/vite-dev/:splat"
+force = true
+status = 301
